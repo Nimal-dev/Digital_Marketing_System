@@ -19,7 +19,7 @@ const port = 4000;
 
 const adminRouter = require('./Routes/adminRouter');
 const providerRouter = require('./Routes/serviceProviderRoute');
-// const entrepreneurRouter = require('./Routes/entrepreneurRouter');
+const entrepreneurRouter = require('./Routes/entrepreneurRouter');
 const authRouter = require('./Routes/Router');
 
 db();
@@ -29,11 +29,11 @@ app.get('/', (req, res) => {
 });
 app.use('/provider', providerRouter);
 app.use('/admin', adminRouter);
-// app.use('/entrepreneur', entrepreneurRouter);
+app.use('/entrepreneur', entrepreneurRouter);
 app.use('/auth', authRouter);
 
 // Serve static files from the uploads directory
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, () => {
     console.log('Server Is Running on port', port);

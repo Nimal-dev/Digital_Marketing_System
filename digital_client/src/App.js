@@ -13,7 +13,7 @@ import AddPackage from "./components/Forms/AddPackage";
 import EntrepreneurHome from "./components/HomePage/EntrepreneurHome";
 import AddProducts from "./components/Forms/AddProducts";
 import EditProduct from "./components/Forms/EditProduct";
-// import CustomerHome from "./components/HomePage/CustomerHome";
+import CustomerHome from "./components/HomePage/CustomerHome";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <Route path="/AdminHome" element={<AdminHome/>}/>
         <Route path="/ServiceProviderHome" element={<ServiceProviderHome/>} />
         <Route path="/EntrepreneurHome" element={<EntrepreneurHome/>} />
-        {/* <Route path="/CustomerHome" element={<CustomerHome/>} /> */}
+        <Route path="/CustomerHome" element={<CustomerHome/>} />
 
         {/* -------------------------- HomePages Route End----------------------------- */}
 
