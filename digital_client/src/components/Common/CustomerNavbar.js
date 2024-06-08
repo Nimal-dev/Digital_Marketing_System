@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 function CustomerNavbar() {
@@ -11,20 +11,37 @@ function CustomerNavbar() {
   };
 
   return (
-    <header className="customer-navbar">
-      <div className="navbar-container">
-        <h1 className="navbar-logo">MyStore</h1>
-        <nav>
-          <ul className="navbar-menu">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/products">Products</Link></li>
-            <li><a href="#" onClick={handleLogout}>Log Out</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <>
+    <nav class="customer-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+<div class="container">
+  <a class="navbar-brand" href="index.html">DMP</a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsFurni">
+    <ul class="customer-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li><a class="nav-link" href="shop.html">Shop</a></li>
+      <li><a class="nav-link" href="services.html">Services</a></li>
+      <li><a class="nav-link" href="about.html">About us</a></li>
+    </ul>
+      <a class="btn btn-primary" onClick={handleLogout}>Log Out</a>
+
+
+    {/* <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+      <li><a class="nav-link" href="#"><img src="images/user.svg"/></a></li>
+      <li><a class="nav-link" href="cart.html"><img src="images/cart.svg"/></a></li>
+    </ul> */}
+  </div>
+</div>
+  
+</nav>
+    </>
   );
 }
 
