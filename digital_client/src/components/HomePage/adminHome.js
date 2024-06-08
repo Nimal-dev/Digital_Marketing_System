@@ -26,9 +26,9 @@ function AdminHome() {
         {/* {usertype === 0 ? <Widgets /> : null} Conditionally render Widgets based on usertype  */}
         <div class="container-fluid pt-4 px-4">
           <div class="row g-4">
-            <ServicesCategory />,
-            <ServiceProvidersList />,
-            <CustomersList/>,
+            <ServicesCategory />
+            <ServiceProvidersList />
+            <CustomersList/>
             <ShopOwnersList/>
           </div>
         </div>
