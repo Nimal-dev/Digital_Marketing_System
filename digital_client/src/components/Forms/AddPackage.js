@@ -7,6 +7,7 @@ function AddPackage() {
   const [services, setServices] = useState([]);
   const [allServices, setAllServices] = useState([]);
   const [packagePrice, setPackagePrice] = useState("");
+  const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -46,6 +47,9 @@ function AddPackage() {
     } else if (isNaN(packagePrice) || parseFloat(packagePrice) <= 0) {
       formErrors.packagePrice = 'Package Price must be a valid positive number';
     }
+    if (!image) {
+      formErrors.image = 'Package Image is required';
+    }
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
   };
@@ -57,18 +61,19 @@ function AddPackage() {
       return;
     }
 
-    let params = {
-      packagename: packagename,
-      services: services,
-      packagePrice: packagePrice,
-    };
+    const userdata = JSON.parse(localStorage.getItem('userdata'));
+    const providerId = userdata._id;
+
+    let formData = new FormData();
+    formData.append('packagename', packagename);
+    formData.append('services', JSON.stringify(services));
+    formData.append('packagePrice', packagePrice);
+    formData.append('image', image);
+    formData.append('providerId', providerId);
+
     fetch("http://localhost:4000/provider/AddPackage", {
       method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
+      body: formData,
     })
       .then((res) => res.json())
       .then((result) => {
@@ -79,6 +84,7 @@ function AddPackage() {
         setPackageName("");
         setServices([]);
         setPackagePrice("");
+        setImage(null);
       })
       .catch((error) => {
         console.error("Error adding Package:", error);
@@ -174,6 +180,19 @@ function AddPackage() {
                     />
                     <label htmlFor="packagePriceInput">Package Price</label>
                     {errors.packagePrice && <small className="text-danger">{errors.packagePrice}</small>}
+                  </div>
+
+                  {/*------------------------- Image Input ---------------------------------*/}
+                  <div className="form-floating mb-3">
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="productImageInput"
+                      name="image"
+                      onChange={(event) => setImage(event.target.files[0])}
+                    />
+                    <label htmlFor="productImageInput">Product Image</label>
+                    {errors.image && <small className="text-danger">{errors.image}</small>}
                   </div>
                   
                   {/*------------------------- SUBMIT BUTTON ---------------------------------*/}

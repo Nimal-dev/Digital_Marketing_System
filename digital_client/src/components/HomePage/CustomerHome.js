@@ -4,6 +4,7 @@ import CustomerNavbar from '../Common/CustomerNavbar'
 import HeroSection from '../Home_Components/HeroSection'
 import ProductSection from '../Home_Components/ProductSection'
 import ChooseUs from '../Home_Components/ChooseUs'
+import CustomerFooter from '../Common/CustomerFooter'
 
 function CustomerHome() {
   return (
@@ -12,6 +13,7 @@ function CustomerHome() {
     <HeroSection/>
     <ProductSection/>
     <ChooseUs/>
+    <CustomerFooter/>
     </>
   )
 }

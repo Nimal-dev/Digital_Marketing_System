@@ -23,7 +23,13 @@ body {
   line-height: 28px;
   color: #6a6a6a;
   font-size: 14px;
-  background-color: #eff2f1; }
+  background-color: #eff2f1;;
+/* background-image: url('https://img.freepik.com/free-vector/stylish-white-background-with-diagonal-lines_1017-33199.jpg?w=1060&t=st=1717995854~exp=1717996454~hmac=4b59a4c4f0cdb5d3bf015eea378577594251e9d33550035bc89638db7f0d0fef'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; */
+}
 
 
 /*** Spinner ***/
@@ -44,6 +50,8 @@ body {
 /*** Button ***/
 .btn {
     transition: .5s;
+    border-radius: 50px;
+    padding: 12px 30px;
 }
 
 .btn-square {
@@ -84,6 +92,7 @@ body {
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
+    
   }
   @keyframes glowing {
     0% {
@@ -123,6 +132,7 @@ body {
     min-height: 100vh;
     background: var(--dark);
     transition: 0.5s;
+    
 }
 
 @media (min-width: 992px) {
@@ -403,10 +413,13 @@ body {
 /* -----------Customer Hero Section Start--------------- */
 .hero {
   background: #3b5d50;
-  padding: calc(4rem - 30px) 0 0rem 0; }
+  padding: calc(4rem - 30px) 0 0rem 0;
+ }
   @media (min-width: 768px) {
     .hero {
-      padding: calc(4rem - 30px) 0 4rem 0; } }
+      padding: calc(4rem - 30px) 0 4rem 0; 
+    } 
+  }
   @media (min-width: 992px) {
     .hero {
       padding: calc(8rem - 30px) 0 8rem 0; } }
@@ -470,7 +483,7 @@ body {
 .section-title {
   color: #2f2f2f; }
 .product-section {
-  padding: 7rem 0; }
+  padding: 5rem 0; }
   .product-section .product-item {
     text-align: center;
     text-decoration: none;
@@ -588,3 +601,94 @@ body {
           color: #6a6a6a; }
 
 /* ----------------Why Choose us section End------------------- */
+
+
+
+/* ---------------------------Footer Section Start------------------ */
+.footer-sections {
+  padding: 80px 0;
+  background: #ffffff; }
+  .footer-sections .relative {
+    position: relative; }
+  .footer-sections a {
+    text-decoration: none;
+    color: #2f2f2f;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+    .footer-sections a:hover {
+      color: rgba(47, 47, 47, 0.5); }
+  .footer-sections .subscription-form {
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+    margin-top: 100px; }
+    @media (min-width: 992px) {
+      .footer-sections .subscription-form {
+        margin-top: 0px;
+        margin-bottom: 80px; } }
+    .footer-sections .subscription-form h3 {
+      font-size: 18px;
+      font-weight: 500;
+      color: #3b5d50; }
+    .footer-sections .subscription-form .form-control {
+      height: 50px;
+      border-radius: 10px;
+      font-family: "Inter", sans-serif; }
+      .footer-sections .subscription-form .form-control:active, .footer-sections .subscription-form .form-control:focus {
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-color: #3b5d50;
+        -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2); }
+      .footer-sections .subscription-form .form-control::-webkit-input-placeholder {
+        font-size: 14px; }
+      .footer-sections .subscription-form .form-control::-moz-placeholder {
+        font-size: 14px; }
+      .footer-sections .subscription-form .form-control:-ms-input-placeholder {
+        font-size: 14px; }
+      .footer-sections .subscription-form .form-control:-moz-placeholder {
+        font-size: 14px; }
+    .footer-sections .subscription-form .btn {
+      border-radius: 10px !important; }
+  .footer-sections .sofa-img {
+    position: absolute;
+    top: -200px;
+    z-index: 1;
+    right: 0; }
+    .footer-sections .sofa-img img {
+      max-width: 380px; }
+  .footer-sections .links-wrap {
+    margin-top: 0px; }
+    @media (min-width: 992px) {
+      .footer-sections .links-wrap {
+        margin-top: 54px; } }
+    .footer-sections .links-wrap ul li {
+      margin-bottom: 10px; }
+  .footer-sections .footer-logo-wrap .footer-logo {
+    font-size: 32px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #3b5d50; }
+  .footer-sections .custom-social li {
+    margin: 2px;
+    display: inline-block; }
+    .footer-sections .custom-social li a {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      display: inline-block;
+      background: #dce5e4;
+      color: #3b5d50;
+      border-radius: 50%; }
+      .footer-sections .custom-social li a:hover {
+        background: #3b5d50;
+        color: #ffffff; }
+  .footer-sections .border-top {
+    border-color: #dce5e4; }
+    .footer-sections .border-top.copyright {
+      font-size: 14px !important; }
+
+/* ---------------------------Footer Section End------------------ */

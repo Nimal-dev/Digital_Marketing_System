@@ -101,3 +101,14 @@ exports.updateProduct = (req, res) => {
     }
   });
 };
+
+
+exports.viewProducts = async (req, res) => {
+  try {
+    const products = await ProductModel.find(); // Fetch all products
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

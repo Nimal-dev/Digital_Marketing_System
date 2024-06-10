@@ -10,7 +10,7 @@ function HeroSection() {
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
 								<h1>Digital Marketing <span clsas="d-block">Platform</span></h1>
-								<p class="mb-4">Welcome to our DM Platform. we Provide a variety of Digital Marketing Services and a space for young Entrepreneurs to Glow up!</p>
+								<p class="mb-4">Welcome to our Digital Marketing Platform. We Provide a variety of Digital Marketing Services and a space for young Entrepreneurs to Glow up!</p>
 								
 							</div>
 						</div>
