@@ -25,7 +25,7 @@ exports.addProduct = (req, res) => {
 
     try {
       const { name, description, price } = req.body;
-      const sellerId = req._id;
+      const entrepreneurId =  req.body.entrepreneurId;
 
       if (!req.file) {
         return res.status(400).json({ error: 'Image is required' });
@@ -38,7 +38,7 @@ exports.addProduct = (req, res) => {
         description,
         price,
         imageUrl,
-        sellerId,
+        entrepreneurId
       };
 
       await ProductModel.create(productParam);
@@ -53,7 +53,18 @@ exports.addProduct = (req, res) => {
 // Function to view products for a specific seller
 exports.viewProducts = async (req, res) => {
   try {
-    const products = await ProductModel.find({ sellerId: req._id });
+    const { entrepreneurId } = req.query;
+    const products = await ProductModel.find({ entrepreneurId }).populate('entrepreneurId');
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+exports.viewProductss = async (req, res) => {
+  try {
+    
+    const products = await ProductModel.find().populate('entrepreneurId');
     res.json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -103,12 +114,12 @@ exports.updateProduct = (req, res) => {
 };
 
 
-exports.viewProducts = async (req, res) => {
-  try {
-    const products = await ProductModel.find(); // Fetch all products
-    res.json(products);
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
+// exports.viewProduct = async (req, res) => {
+//   try {
+//     const products = await ProductModel.find(); // Fetch all products
+//     res.json(products);
+//   } catch (error) {
+//     console.error("Error fetching products:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };

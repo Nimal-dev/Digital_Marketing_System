@@ -16,6 +16,7 @@ import EditProduct from "./components/Forms/EditProduct";
 import CustomerHome from "./components/HomePage/CustomerHome";
 import FullProductSection from "./components/Home_Components/FullProductSection";
 import ServicesSection from "./components/Home_Components/ServicesSection";
+import Cart from "./components/Home_Components/Cart";
 
 function App() {
   return (
@@ -53,10 +54,21 @@ function App() {
         <Route path="/AddPackage" element={<AddPackage/>} />
         <Route path="/AddProduct" element={<AddProducts/>} />
         <Route path="/EditProduct/:id" element={<EditProduct />} />
+
+
+
+
+
+        {/*---------------------------Customer Page Route Start---------------------------------- */}
+
         <Route path="/Products" element={<FullProductSection />} />
         <Route path="/Services" element={<ServicesSection />} />
+        <Route path="/Cart" element={<Cart />} />
 
-        {/*---------------------------HomePages Route End---------------------------------- */}
+
+        {/*---------------------------Customer Page Route End---------------------------------- */}
+
+
       </Routes>
     </BrowserRouter>
   );

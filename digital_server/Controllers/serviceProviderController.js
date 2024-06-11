@@ -67,6 +67,16 @@ exports.viewPackages = async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
   }
 };
+exports.viewPackage = async (req, res) => {
+  try {
+      const { providerId } = req.query; // Accessing query parameter
+      const packages = await packageModel.find().populate('providerId');
+      res.json(packages);
+  } catch (error) {
+      console.error("Error fetching packages:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 // Function to delete a package
 exports.deletePackage = async (req, res) => {

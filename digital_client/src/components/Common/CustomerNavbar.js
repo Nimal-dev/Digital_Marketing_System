@@ -32,6 +32,9 @@ function CustomerNavbar() {
               <li className={`nav-item ${currentPath === '/Services' ? 'active' : ''}`}>
                 <a className="nav-link" href="/Services">Services</a>
               </li>
+              <li className={`nav-item ${currentPath === '/Cart' ? 'active' : ''}`}>
+						<a class="nav-link" href="/Cart"><img src="img/cart.svg"/><strong> Cart</strong></a>
+              </li>
               {/* <li className={`nav-item ${currentPath === '/about' ? 'active' : ''}`}>
                 <a className="nav-link" href="/about">About us</a>
               </li> */}

@@ -47,13 +47,15 @@ function AddProducts() {
     //   setMessage("Failed to get seller information. Please log in again.");
     //   return;
     // }
+    const userdata = JSON.parse(localStorage.getItem('userdata'));
+    const entrepreneurId = userdata._id
 
     const formData = new FormData();
     formData.append("name", productname);
     formData.append("description", description);
     formData.append("price", productprice);
     formData.append("image", image);
-    // formData.append("sellerId", sellerId);
+    formData.append("entrepreneurId", entrepreneurId);
 
     try {
       const response = await fetch("http://localhost:4000/entrepreneur/AddProduct", {

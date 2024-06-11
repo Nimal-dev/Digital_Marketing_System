@@ -18,11 +18,11 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-//   sellerId: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: 'entrepreneur',
-//     required: true,
-//   },
+  entrepreneurId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'entrepreneur',
+    required: true,
+  },
 }, {
   timestamps: true,
 });

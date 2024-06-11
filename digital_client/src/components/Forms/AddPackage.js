@@ -54,7 +54,7 @@ function AddPackage() {
     return Object.keys(formErrors).length === 0;
   };
 
-  const savePackage = (event) => {
+  const savePackage = async(event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
     if (!validateForm()) {
@@ -70,31 +70,29 @@ function AddPackage() {
     formData.append('packagePrice', packagePrice);
     formData.append('image', image);
     formData.append('providerId', providerId);
-
-    fetch("http://localhost:4000/provider/AddPackage", {
+    try {
+    const response = await fetch("http://localhost:4000/provider/AddPackage", {
       method: "post",
       body: formData,
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        // Show success message
-        setMessage("Package added successfully.");
-        // Clear form fields after successful submission
-        setPackageName("");
-        setServices([]);
-        setPackagePrice("");
-        setImage(null);
-      })
-      .catch((error) => {
-        console.error("Error adding Package:", error);
-        // Show error message
-        setMessage("Failed to add Package. Please try again.");
-      });
+    });
+      
+    if (!response.ok) {
+      throw new Error("Failed to add product");
+    }
+
+    const result = await response.json();
+    setMessage(result.message);
+  
+    setImage(null);
     setTimeout(() => {
-      navigate('/ServiceProviderHome');
+      navigate("/ServiceProviderHome"); // Replace with actual route
     }, 2000);
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    setMessage("Failed to add product. Please try again.");
+  }
+};
+    
 
   return (
     <>

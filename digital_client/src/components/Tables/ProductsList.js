@@ -6,7 +6,9 @@ function ProductsList() {
   const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:4000/entrepreneur/viewProducts")
+    const userdata = JSON.parse(localStorage.getItem('userdata'));
+    const entrepreneurId = userdata._id;
+    fetch(`http://localhost:4000/entrepreneur/viewProducts?entrepreneurId=${entrepreneurId}`)
       .then((res) => res.json())
       .then((result) => {
         if (Array.isArray(result)) {
@@ -22,6 +24,7 @@ function ProductsList() {
       });
   }, [refresh]);
 
+  
   const deleteProduct = (id) => {
     fetch("http://localhost:4000/entrepreneur/deleteProduct", {
       method: "post",
