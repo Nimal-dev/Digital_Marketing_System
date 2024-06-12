@@ -48,7 +48,7 @@ function ProductSection() {
                     src={`http://localhost:4000${product.imageUrl}`}
                     class="img-fluid product-thumbnail"
                     alt={product.name}
-                    style={{ width: "290px", height: "200px" }}
+                    style={{ width: "290px", height: "200px" , borderRadius:"10px 10px 3px 3px"  }}
                   />
                 <h3 className="product-title">{product.name}</h3>
                 <p>{product.description}</p>

@@ -6,7 +6,17 @@ function Cart() {
   return (
     <>
     <CustomerNavbar/>
-    <h1 style ={{color: 'black', marginLeft: '50px', marginTop:'50px'}}>Cart</h1>
+    {/* -------------Top Bar Start--------------- */}
+    <div
+        style={{
+            backgroundColor: "#3b5d50",
+            padding: "5px 0px 20px 0px",
+            
+            }}
+            >
+        <h1 style={{ marginLeft: "50px", marginTop: "20px" }}>CHECKOUT</h1>
+      </div>
+          {/* -------------Top Bar End--------------- */}
     <CartContents/>
     </>
   )

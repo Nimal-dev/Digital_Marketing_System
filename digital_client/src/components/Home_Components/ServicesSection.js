@@ -25,7 +25,7 @@ function ServicesSection() {
                   <img
                     src={`http://localhost:4000${pkg.imageUrl}`}
                     alt={pkg.packagename}
-                    style={{ width: '290px', height: '245px' }}
+                    style={{ width: '290px', height: '245px' ,borderRadius:"10px 10px 5px 5px"}}
                     className="img-fluid product-thumbnail"
                     onError={(e) => { e.target.onerror = null; e.target.src = 'fallback-image.jpg'; }} // Fallback image handling
                   />

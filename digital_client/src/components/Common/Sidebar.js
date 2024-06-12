@@ -158,6 +158,14 @@ function Sidebar() {
               >
                 <i className="fa fa-bell me-2"></i>Add Product
               </NavLink>
+              <NavLink
+                exact
+                to="/EntreprenurOrders"
+                className="nav-item nav-link"
+                activeClassName="active"
+              >
+                <i className="fa fa-bell me-2"></i>Orders
+              </NavLink>
             </>
           )}
           {usertype === 3 && (

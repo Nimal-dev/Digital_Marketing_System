@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import {useNavigate } from 'react-router-dom';
 import CustomerFooter from '../Common/CustomerFooter';
 
 
 function CartContents() {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate ();
 
   useEffect(() => {
     const userdata = JSON.parse(localStorage.getItem('userdata'));
@@ -31,6 +33,38 @@ function CartContents() {
       .catch(error => console.error('Error removing item:', error));
   };
 
+  const proceedToCheckout = () => {
+    const userdata = JSON.parse(localStorage.getItem('userdata'));
+    const customerId = userdata._id;
+    const address = prompt("Please enter your address");
+
+    if (!address) {
+      alert("Address is required to proceed to checkout");
+      return;
+    }
+
+    fetch('http://localhost:4000/customer/placeOrder', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ customerId, address }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Order placed successfully');
+          navigate('/checkout', { state: { cartItems: [] } });  // Assuming checkout page will display a confirmation message
+        } else {
+          alert('Error placing order: ' + data.message);
+        }
+      })
+      .catch(error => console.error('Error placing order:', error));
+  };
+
+
+
+ 
 
   return (
     <>
@@ -116,7 +150,7 @@ function CartContents() {
                     </div>
                     <div className="row">
                       <div className="col-md-12">
-                        <button className="btn btn-secondary btn-lg py-3 px-10 mb-5" onClick={() => window.location='checkout.html'}>Proceed To Checkout</button>
+                        <button className="btn btn-secondary btn-lg py-3 px-10 mb-5" onClick={proceedToCheckout}>Proceed To Checkout</button>
                       </div>
                     </div>
                   </div>

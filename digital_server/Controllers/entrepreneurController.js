@@ -1,4 +1,6 @@
 const productModels = require("../Models/productModel");
+const { Order } = require('../Models/orderModel');
+const { Product } = require('../Models/productModel');
 
 
 const multer = require("multer");
@@ -123,3 +125,24 @@ exports.updateProduct = (req, res) => {
 //     res.status(500).json({ error: "Internal Server Error" });
 //   }
 // };
+
+
+exports.getEntrepreneurOrders = async (req, res) => {
+  const { entrepreneurId } = req.params;
+
+  try {
+    // Find products added by the entrepreneur
+    const products = await Product.find({ entrepreneurId });
+
+    // Extract product IDs
+    const productIds = products.map(product => product._id);
+
+    // Find orders containing these products
+    const orders = await Order.find({ "items.productId": { $in: productIds } }).populate('items.productId').populate('userId');
+
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ success: false, message: 'Error fetching orders' });
+  }
+};
