@@ -14,6 +14,13 @@ import EntrepreneurHome from "./components/HomePage/EntrepreneurHome";
 import AddProducts from "./components/Forms/AddProducts";
 import EditProduct from "./components/Forms/EditProduct";
 import CustomerHome from "./components/HomePage/CustomerHome";
+import FullProductSection from "./components/Home_Components/FullProductSection";
+import ServicesSection from "./components/Home_Components/ServicesSection";
+import Cart from "./components/Home_Components/Cart";
+import CheckoutPage from "./components/Home_Components/CheckoutPage";
+import Checkout from "./components/Home_Components/Checkout";
+import MyOrders from "./components/Home_Components/MyOrders";
+import EntrepreneurOrders from "./components/Tables/EntrepreneurOrders";
 
 function App() {
   return (
@@ -36,6 +43,7 @@ function App() {
         <Route path="/CustomerHome" element={<CustomerHome/>} />
 
         {/* -------------------------- HomePages Route End----------------------------- */}
+        <Route path="/EntreprenurOrders" element={<EntrepreneurOrders/>} />
 
         {/* -------------------------- CRUD Route Start----------------------------- */}
 
@@ -52,7 +60,23 @@ function App() {
         <Route path="/AddProduct" element={<AddProducts/>} />
         <Route path="/EditProduct/:id" element={<EditProduct />} />
 
-        {/*---------------------------HomePages Route End---------------------------------- */}
+
+
+
+
+        {/*---------------------------Customer Page Route Start---------------------------------- */}
+
+        <Route path="/Products" element={<FullProductSection />} />
+        <Route path="/MyOrders" element={<MyOrders />} />
+        <Route path="/Services" element={<ServicesSection />} />
+        <Route path="/Cart" element={<Cart />} />
+        <Route path="/checkoutpage" element={<CheckoutPage />} />
+        <Route path="/checkout" element={<Checkout />} />
+
+
+        {/*---------------------------Customer Page Route End---------------------------------- */}
+
+
       </Routes>
     </BrowserRouter>
   );

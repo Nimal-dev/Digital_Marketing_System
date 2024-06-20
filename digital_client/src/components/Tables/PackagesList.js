@@ -5,8 +5,31 @@ function PackagesList() {
   const [packages, setPackages] = useState([]);
   const [refresh, setRefresh] = useState(0);
 
-  useEffect(() => {
-    fetch("http://localhost:4000/provider/viewPackages")
+  // useEffect(() => {
+  //   const userdata = JSON.parse(localStorage.getItem('userdata'));
+  //   const providerId = userdata._id;
+
+  //   fetch(`http://localhost:4000/provider/viewPackages?providerId=${providerId}`)
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       if (Array.isArray(result)) {
+  //         setPackages(result);
+  //       } else {
+  //         console.error("Unexpected response format:", result);
+  //         setPackages([]); // Set packages to an empty array if the response is not an array
+  //       }
+  //       console.log(result, 'packages');
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching packages:", error);
+  //     });
+  // }, [refresh]);
+
+    useEffect(() => {
+    const userdata = JSON.parse(localStorage.getItem('userdata'));
+    const providerId = userdata._id;
+
+    fetch(`http://localhost:4000/provider/viewPackages?providerId=${providerId}`)
       .then((res) => res.json())
       .then((result) => {
         if (Array.isArray(result)) {
@@ -24,7 +47,7 @@ function PackagesList() {
 
   const deletePackage = (id) => {
     fetch("http://localhost:4000/provider/deletePackage", {
-      method: "post",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -44,7 +67,7 @@ function PackagesList() {
   return (
     <div className="col-sm-6 col-xl-7">
       <div className="bg-secondary rounded h-100 p-4">
-        <div className="d-flex justify-content-between align-items-center mb-4 ">
+        <div className="d-flex justify-content-between align-items-center mb-4">
           <h6 className="mb-0">PACKAGES LIST</h6>
           <Link className="btn btn-primary" to="/AddPackage">
             ADD PACKAGE
@@ -68,7 +91,6 @@ function PackagesList() {
                 <td>{Array.isArray(packageItem.services) ? packageItem.services.join(", ") : packageItem.services}</td>
                 <td>₹{packageItem.packagePrice}</td>
                 <td>
-                 
                   <button
                     className="btn btn-danger ms-2"
                     onClick={() => deletePackage(packageItem._id)}

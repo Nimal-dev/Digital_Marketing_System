@@ -1,23 +1,38 @@
+const multer = require("multer");
+const path = require("path");
+const packageModel = require("../Models/packageModel").package;
 
-// const authmodels = require("../Models/authModel");
-const packagemodels = require("../Models/packageModel");
-
-// const bcrypt = require("bcrypt");
-
-// const providerModel = providermodels.provider;
-// const authModel = authmodels.auth;
-const packageModel = packagemodels.package;
-
-
-
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage }).single('image');
 
 exports.AddPackage = async (req, res) => {
+  upload(req, res, async (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error uploading file', details: err });
+    }
+
     try {
+      const providerId = req.body.providerId;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'Image is required' });
+      }
+
+      const imageUrl = `/uploads/${req.file.filename}`;
+      
       const packageparam = {
         packagename: req.body.packagename,
-        services: req.body.services, // Array of services
+        services: JSON.parse(req.body.services), // Array of services
         packagePrice: req.body.packagePrice,
-        createdBy: req._id
+        imageUrl,
+        providerId
       };
       await packageModel.create(packageparam);
       res.json("success");
@@ -25,25 +40,46 @@ exports.AddPackage = async (req, res) => {
       console.error("Error:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
-  };
-  
-
-
-  // Function to view packages
-// adminController.js
-exports.viewPackages = async (req, res) => {
-    try {
-        const packages = await packageModel.find({ createdBy: req._id });
-        res.json(packages);
-    } catch (error) {
-        console.error("Error fetching packages:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
+  });
 };
 
-  
-  // Function to delete a package
-  exports.deletePackage = async (req, res) => {
+// Function to view packages
+// exports.viewPackages = async (req, res) => {
+//     try {
+//       let test = req.params.providerId;
+//         const packages = await packageModel.find(test).populate('providerId');
+//         console.log(packages);
+//         res.json(packages);
+//     } catch (error) {
+//         console.error("Error fetching packages:", error);
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// };
+
+exports.viewPackages = async (req, res) => {
+  try {
+      const { providerId } = req.query; // Accessing query parameter
+      const packages = await packageModel.find({ providerId }).populate('providerId');
+      console.log(packages);
+      res.json(packages);
+  } catch (error) {
+      console.error("Error fetching packages:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+exports.viewPackage = async (req, res) => {
+  try {
+      const { providerId } = req.query; // Accessing query parameter
+      const packages = await packageModel.find().populate('providerId');
+      res.json(packages);
+  } catch (error) {
+      console.error("Error fetching packages:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// Function to delete a package
+exports.deletePackage = async (req, res) => {
     try {
       const { id } = req.body;
       await packageModel.findByIdAndDelete(id);
@@ -52,8 +88,10 @@ exports.viewPackages = async (req, res) => {
       console.error("Error deleting package:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
-  };
-  exports.deleteService = async (req, res) => {
+};
+
+// Function to delete a service
+exports.deleteService = async (req, res) => {
     try {
         const serviceId = req.body.id;
         const service = await serviceModel.findById(serviceId);
@@ -71,4 +109,3 @@ exports.viewPackages = async (req, res) => {
         res.status(500).json({ error: "An error occurred while deleting the Service" });
     }
 };
-  

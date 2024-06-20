@@ -8,7 +8,7 @@ function ChooseUs() {
 				<div class="row justify-content-between">
 					<div class="col-lg-6">
 						<h2 class="section-title">Why Choose Us</h2>
-						<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
+						<p>We commit ourselves to deliver the best Services and Quality product form Entreprenurs and Service Providers</p>
 
 						<div class="row my-5">
 							<div class="col-6 col-md-6">
@@ -17,7 +17,7 @@ function ChooseUs() {
 										<img src="img/truck.svg" alt="Image" class="imf-fluid"/>
 									</div>
 									<h3>Fast &amp; Free Shipping</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>We Provide no extra shipping charges for the products you ordered and there are no hidden fees!</p>
 								</div>
 							</div>
 
@@ -27,7 +27,7 @@ function ChooseUs() {
 										<img src="img/bag.svg" alt="Image" class="imf-fluid"/>
 									</div>
 									<h3>Easy to Shop</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>Our User Friendly interface provide a best in class shopping for seamless customer interaction</p>
 								</div>
 							</div>
 
@@ -37,7 +37,7 @@ function ChooseUs() {
 										<img src="img/support.svg" alt="Image" class="imf-fluid"/>
 									</div>
 									<h3>24/7 Support</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>We are committed in providing you with 24/7 customer support </p>
 								</div>
 							</div>
 
@@ -46,8 +46,8 @@ function ChooseUs() {
 									<div class="icon">
 										<img src="img/return.svg" alt="Image" class="imf-fluid"/>
 									</div>
-									<h3>Hassle Free Returns</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<h3>Hassle Free Booking</h3>
+									<p> With seamless payments interface made it easy for payments to be completed with ease</p>
 								</div>
 							</div>
 

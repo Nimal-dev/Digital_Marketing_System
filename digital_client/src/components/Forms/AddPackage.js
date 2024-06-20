@@ -7,6 +7,7 @@ function AddPackage() {
   const [services, setServices] = useState([]);
   const [allServices, setAllServices] = useState([]);
   const [packagePrice, setPackagePrice] = useState("");
+  const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -46,49 +47,52 @@ function AddPackage() {
     } else if (isNaN(packagePrice) || parseFloat(packagePrice) <= 0) {
       formErrors.packagePrice = 'Package Price must be a valid positive number';
     }
+    if (!image) {
+      formErrors.image = 'Package Image is required';
+    }
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
   };
 
-  const savePackage = (event) => {
+  const savePackage = async(event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
     if (!validateForm()) {
       return;
     }
 
-    let params = {
-      packagename: packagename,
-      services: services,
-      packagePrice: packagePrice,
-    };
-    fetch("http://localhost:4000/provider/AddPackage", {
+    const userdata = JSON.parse(localStorage.getItem('userdata'));
+    const providerId = userdata._id;
+
+    let formData = new FormData();
+    formData.append('packagename', packagename);
+    formData.append('services', JSON.stringify(services));
+    formData.append('packagePrice', packagePrice);
+    formData.append('image', image);
+    formData.append('providerId', providerId);
+    try {
+    const response = await fetch("http://localhost:4000/provider/AddPackage", {
       method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        // Show success message
-        setMessage("Package added successfully.");
-        // Clear form fields after successful submission
-        setPackageName("");
-        setServices([]);
-        setPackagePrice("");
-      })
-      .catch((error) => {
-        console.error("Error adding Package:", error);
-        // Show error message
-        setMessage("Failed to add Package. Please try again.");
-      });
+      body: formData,
+    });
+      
+    if (!response.ok) {
+      throw new Error("Failed to add product");
+    }
+
+    const result = await response.json();
+    setMessage(result.message);
+  
+    setImage(null);
     setTimeout(() => {
-      navigate('/ServiceProviderHome');
+      navigate("/ServiceProviderHome"); // Replace with actual route
     }, 2000);
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    setMessage("Failed to add product. Please try again.");
+  }
+};
+    
 
   return (
     <>
@@ -174,6 +178,19 @@ function AddPackage() {
                     />
                     <label htmlFor="packagePriceInput">Package Price</label>
                     {errors.packagePrice && <small className="text-danger">{errors.packagePrice}</small>}
+                  </div>
+
+                  {/*------------------------- Image Input ---------------------------------*/}
+                  <div className="form-floating mb-3">
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="productImageInput"
+                      name="image"
+                      onChange={(event) => setImage(event.target.files[0])}
+                    />
+                    <label htmlFor="productImageInput">Product Image</label>
+                    {errors.image && <small className="text-danger">{errors.image}</small>}
                   </div>
                   
                   {/*------------------------- SUBMIT BUTTON ---------------------------------*/}

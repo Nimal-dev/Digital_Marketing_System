@@ -24,7 +24,7 @@ function Navbar() {
   
 
   const handleLogout = () => {
-    localStorage.removeItem('userdata');
+    localStorage.clear('userdata');
     navigate('/');
   };
 

@@ -38,7 +38,7 @@ function ServiceProvidersList() {
   };
 
   return (
-    <div className="col-sm-6 col-xl-6">
+    <div className="col-sm-6 col-xl-7">
       <div className="bg-secondary rounded h-100 p-4">
         <div className="d-flex justify-content-between align-items-center mb-4 ">
           <h6 className="mb-0">SERVICE PROVIDERS LIST</h6>
@@ -51,7 +51,7 @@ function ServiceProvidersList() {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Contact</th>
+              {/* <th scope="col">Contact</th> */}
               <th scope="col">Type</th>
               <th scope="col">Email</th>
               <th scope="col">Actions</th>
@@ -62,7 +62,7 @@ function ServiceProvidersList() {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{providers.providername}</td>
-                <td>{providers.contact}</td>
+                {/* <td>{providers.contact}</td> */}
                 <td>{providers.type}</td>
                 <td>{providers.authid.email}</td>
                 

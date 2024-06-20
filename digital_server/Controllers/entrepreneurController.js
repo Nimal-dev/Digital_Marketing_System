@@ -1,4 +1,6 @@
 const productModels = require("../Models/productModel");
+const { Order } = require('../Models/orderModel');
+const { Product } = require('../Models/productModel');
 
 
 const multer = require("multer");
@@ -25,7 +27,7 @@ exports.addProduct = (req, res) => {
 
     try {
       const { name, description, price } = req.body;
-      const sellerId = req._id;
+      const entrepreneurId =  req.body.entrepreneurId;
 
       if (!req.file) {
         return res.status(400).json({ error: 'Image is required' });
@@ -38,7 +40,7 @@ exports.addProduct = (req, res) => {
         description,
         price,
         imageUrl,
-        sellerId,
+        entrepreneurId
       };
 
       await ProductModel.create(productParam);
@@ -53,7 +55,18 @@ exports.addProduct = (req, res) => {
 // Function to view products for a specific seller
 exports.viewProducts = async (req, res) => {
   try {
-    const products = await ProductModel.find({ sellerId: req._id });
+    const { entrepreneurId } = req.query;
+    const products = await ProductModel.find({ entrepreneurId }).populate('entrepreneurId');
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+exports.viewProductss = async (req, res) => {
+  try {
+    
+    const products = await ProductModel.find().populate('entrepreneurId');
     res.json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -100,4 +113,36 @@ exports.updateProduct = (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+};
+
+
+// exports.viewProduct = async (req, res) => {
+//   try {
+//     const products = await ProductModel.find(); // Fetch all products
+//     res.json(products);
+//   } catch (error) {
+//     console.error("Error fetching products:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+
+
+exports.getEntrepreneurOrders = async (req, res) => {
+  const { entrepreneurId } = req.params;
+
+  try {
+    // Find products added by the entrepreneur
+    const products = await Product.find({ entrepreneurId });
+
+    // Extract product IDs
+    const productIds = products.map(product => product._id);
+
+    // Find orders containing these products
+    const orders = await Order.find({ "items.productId": { $in: productIds } }).populate('items.productId').populate('userId');
+
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ success: false, message: 'Error fetching orders' });
+  }
 };

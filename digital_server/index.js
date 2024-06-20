@@ -20,6 +20,7 @@ const port = 4000;
 const adminRouter = require('./Routes/adminRouter');
 const providerRouter = require('./Routes/serviceProviderRoute');
 const entrepreneurRouter = require('./Routes/entrepreneurRouter');
+const customerRouter = require('./Routes/customerRouter');
 const authRouter = require('./Routes/Router');
 
 db();
@@ -27,6 +28,8 @@ db();
 app.get('/', (req, res) => {
     res.send('Loaded');
 });
+
+app.use('/customer', customerRouter);
 app.use('/provider', providerRouter);
 app.use('/admin', adminRouter);
 app.use('/entrepreneur', entrepreneurRouter);

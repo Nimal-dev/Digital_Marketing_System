@@ -78,10 +78,11 @@ function Signup() {
     }, [message, navigate]);
 
     return (
+        <div className="background2">
         <div className="container-fluid">
             <div className="row h-100 align-items-center justify-content-center" style={{minHeight: '100vh'}}>
                 <div className="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-6">
-                    <div className="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                    <div className="glassmorphic rounded p-4 p-sm-5 my-4 mx-3">
                         <div className="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" className="">
                                 <h3 className="text-primary">DISASTER MANAGEMENT SYSTEM</h3>
@@ -158,6 +159,7 @@ function Signup() {
                         <p className="text-center mb-0">Already have an Account? <a href="/">Sign In</a></p>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );
