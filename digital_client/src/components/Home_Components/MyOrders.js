@@ -36,7 +36,7 @@ function MyOrders() {
       {/* -------------Top Bar End--------------- */}
       <div className="container">
         {orders.length === 0 ? (
-          <p>You have not placed any orders yet.</p>
+          <p>You have not placed any Bookings yet.</p>
         ) : (
           <table className="table">
             <thead>

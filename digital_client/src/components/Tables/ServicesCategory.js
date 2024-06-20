@@ -38,7 +38,7 @@ function ServicesCategory() {
   };
 
   return (
-    <div className="col-sm-6 col-xl-6">
+    <div className="col-sm-6 col-xl-5">
       <div className="bg-secondary rounded h-100 p-4">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h6 className="mb-0">SERVICES CATEGORY</h6>

@@ -36,7 +36,7 @@ function ServicesSection() {
                   
                   <span className="icon-cross">
                     {/* <img src="img/cross.svg" className="img-fluid" alt="cross icon" /> */}
-                    <a href="/products" className="btn btn-secondary"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+                    <a href="/products" className="btn btn-secondary"><i class="fa fa-phone" aria-hidden="true"> Book Now</i></a>
                   </span>
                 </div>
               </div>

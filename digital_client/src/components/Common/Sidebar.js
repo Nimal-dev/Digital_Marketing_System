@@ -92,21 +92,25 @@ function Sidebar() {
 
               <NavLink
                 exact
-                to="/HelpRequests"
+                to="/AddServices"
                 className="nav-item nav-link"
                 activeClassName="active"
               >
-                <i className="fa fa-bell me-2"></i>Help Requests
+                <i className="fa fa-tachometer-alt me-2"></i>Add Services
               </NavLink>
 
               <NavLink
                 exact
-                to="/ResourceRequests"
+                to="/AddServiceProvider"
                 className="nav-item nav-link"
                 activeClassName="active"
               >
-                <i className="fa fa-bell me-2"></i>Resource Requests
+                <i className="fa fa-tachometer-alt me-2"></i>Add Providers
               </NavLink>
+
+
+
+              
             </>
           )}
           {usertype === 1 && (
@@ -119,24 +123,16 @@ function Sidebar() {
               >
                 <i className="fa fa-tachometer-alt me-2"></i>Dashboard
               </NavLink>
-
               <NavLink
                 exact
-                to="/HelpRequests"
+                to="/AddPackage"
                 className="nav-item nav-link"
                 activeClassName="active"
               >
-                <i className="fa fa-bell me-2"></i>Help Requests
+                <i className="fa fa-tachometer-alt me-2"></i>Add Package
               </NavLink>
 
-              <NavLink
-                exact
-                to="/ResourceRequests"
-                className="nav-item nav-link"
-                activeClassName="active"
-              >
-                <i className="fa fa-bell me-2"></i>Resource Requests
-              </NavLink>
+             
             </>
           )}
           {usertype === 2 && (

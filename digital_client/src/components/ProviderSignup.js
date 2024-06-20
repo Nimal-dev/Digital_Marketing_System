@@ -83,10 +83,12 @@ function ProviderSignup() {
   }, [message, navigate]);
 
   return (
+    <div className='background3'>
+
     <div className="container-fluid">
       <div className="row h-100 align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
         <div className="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-6">
-          <div className="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+          <div className="glassmorphic rounded p-4 p-sm-5 my-4 mx-3">
             <div className="d-flex align-items-center justify-content-between mb-3">
               <a href="/" className="">
                 <h3 className="text-primary">DMP SERVICE PROVIDER</h3>
@@ -122,7 +124,7 @@ function ProviderSignup() {
                 id="floatingSelect"
                 aria-label="Floating label select example"
                 onChange={(e) => setType(e.target.value)}
-                style={{ height: "60px" }}
+                style={{ height: "60px"}}
               >
                 <option selected>Select Type</option>
                 <option value="Company">Company</option>
@@ -161,7 +163,7 @@ function ProviderSignup() {
                 id="floatingPassword"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
-              />
+                />
               <label htmlFor="floatingPassword">Password</label>
               {errors.password && <small className="text-danger">{errors.password}</small>}
             </div>
@@ -172,10 +174,11 @@ function ProviderSignup() {
             >
               Sign Up
             </button>
-            <p className="text-center mb-0">Already have an Account? <a href="/">Sign In</a></p>
+            <p className="text-center mb-0" style={{color:"white"}}>Already have an Account? <a href="/">Sign In</a></p>
           </div>
         </div>
       </div>
+                </div>
     </div>
   );
 }

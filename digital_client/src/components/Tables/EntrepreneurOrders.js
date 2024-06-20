@@ -25,33 +25,30 @@ function EntrepreneurOrders() {
 
   return (
     <>
-      <Navbar />
-      {/* -------------Top Bar Start--------------- */}
-      <div
-        style={{
-          backgroundColor: "#3b5d50",
-          padding: "5px 0px 20px 0px",
-        }}
-      >
-        <h1 style={{ marginLeft: "50px", marginTop: "20px" }}>Customer Orders</h1>
-      </div>
-      {/* -------------Top Bar End--------------- */}
-      <div className="container">
-        <Sidebar/>
-        {orders.length === 0 ? (
-          <p>No orders found for your products.</p>
+     <Sidebar />
+      <div class="content">
+        <Navbar />
+        {/* {usertype === 0 ? <Widgets /> : null} Conditionally render Widgets based on usertype  */}
+        <div class="container-fluid pt-4 px-4">
+          <div class="row g-4">
+     <div class="col-12">
+        <div class="bg-secondary rounded h-100 p-4">
+          <h6 class="mb-2">Orders</h6>
+          <div class="table-responsive">
+          {orders.length === 0 ? (
+          <p>No orders found!</p>
         ) : (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Customer</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Items</th>
-              </tr>
-            </thead>
-            <tbody>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Order Id</th>
+                  <th scope="col">Customer</th>
+                  <th scope="col">Items</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
               {orders.map(order => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
@@ -74,11 +71,15 @@ function EntrepreneurOrders() {
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
         )}
+          </div>
+        </div>
       </div>
-      
+      </div>
+      </div>
+      </div>
     </>
   );
 }
